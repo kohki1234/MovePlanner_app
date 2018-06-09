@@ -32,6 +32,7 @@ function loadData() {
 
     // YOUR CODE GOES HERE!
     $.getJSON( nytimesurl, function( data ) {
+
       var items = [];
       // console.log(data)
       // console.log(data.response.docs[0].web_url)
@@ -42,7 +43,10 @@ function loadData() {
           var article = articles[i];
           $nytElem.append('<li class="article">' + '<a href="' + article.web_url + '">' + article.headline.main + '</a>' + '<p>' + article.snippet + '</p>' + '</li>');
       };
-    }); 
+    }) .fail(function() {
+        // alert( "Handler for .error() called." )
+        $nytElem.append('<li class="article">' + 'New York times data was failed to be loaded due to some reason..., please try again later' + '</li>')
+      });  
 
 
     return false;
