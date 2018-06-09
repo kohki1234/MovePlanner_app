@@ -27,7 +27,7 @@ function loadData() {
     var nytimesurl = "https://api.nytimes.com/svc/search/v2/articlesearch.json";
     nytimesurl += '?' + $.param({
       'api-key': "a280a205aa0144cdb9b52bae2b7c7212",
-      'q': "test"
+      'q': address
     });
 
     // YOUR CODE GOES HERE!
