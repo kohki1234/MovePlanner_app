@@ -27,7 +27,7 @@ function loadData() {
     var nytimesurl = "https://api.nytimes.com/svc/search/v2/articlesearch.json";
     nytimesurl += '?' + $.param({
       'api-key': "a280a205aa0144cdb9b52bae2b7c7212",
-      'q': address
+      'q': cityStr
     });
 
     // YOUR CODE GOES HERE!
@@ -50,7 +50,11 @@ function loadData() {
     // load wikipedia articles
     var wikiurl = "https://en.wikipedia.org/w/api.php?action=opensearch&search=" + cityStr.replace(', ', '%20') + '&format=json';
 
-    console.log(wikiurl)
+    // console.log(wikiurl)
+
+    var wikiRequestTimeout = setTimeout(function(){
+        $wikiElem.text('failed to get wikipedia resources')
+    },8000);
 
     // CODE TO LOAD the data
     $.ajax({
@@ -81,9 +85,10 @@ function loadData() {
             finalurl =wikiarticleurl[i];
             // console.log(finalurl);
             $wikiElem.append('<li id="wikipedia-links">' + '<a href="' + finalurl + '"">' + finaldescription + '</a>' + '</li>')
-            console.log('<li id="wikipedia-links">' + '<a href="' + finalurl + '"">' + finaldescription + '</a>' + '</li>')
-
+            // console.log('<li id="wikipedia-links">' + '<a href="' + finalurl + '"">' + finaldescription + '</a>' + '</li>')
         }
+
+        clearTimeout(wikiRequestTimeout);
       }
     });
 
