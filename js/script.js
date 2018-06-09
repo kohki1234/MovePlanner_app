@@ -48,7 +48,7 @@ function loadData() {
 
 
     // load wikipedia articles
-    var wikiurl = "https://en.wikipedia.org/w/api.php?action=opensearch&search=" + address.replace(', ', '%20') + '&format=json';
+    var wikiurl = "https://en.wikipedia.org/w/api.php?action=opensearch&search=" + cityStr.replace(', ', '%20') + '&format=json';
 
     console.log(wikiurl)
 
@@ -72,13 +72,11 @@ function loadData() {
         wikiurldescription = result[1];
         wikiarticleurl = result[3];
 
-
-        for (var i = 0; i < result.length; i++) {
+        for (var i = 0; i < wikiurldescription.length; i++) {
             finaldescription = wikiurldescription[i];
             // console.log(finaldescription);
 
             // $wikiElem.append('<li id="wikipedia-links">' + finaldescription + '</li>');
-
 
             finalurl =wikiarticleurl[i];
             // console.log(finalurl);
